@@ -11,10 +11,7 @@ import MarkdownContextProvider from "./context/MarkdownContext";
 const StyledContainer = styled.div`
   padding: 3em;
   display: flex;
-
-  div {
-    flex: 1;
-  }
+  min-height: 500px;
 `;
 
 function App() {
