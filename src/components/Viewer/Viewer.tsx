@@ -40,8 +40,8 @@ marked.setOptions({
 });
 
 const Viewer = () => {
-  const { MarkdownContextState } = useContext(MarkdownContext);
-  const { editorText } = MarkdownContextState;
+  const { markdownContextState } = useContext(MarkdownContext);
+  const { editorText } = markdownContextState;
   const markedContent = marked(editorText);
   return (
     <>

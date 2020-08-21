@@ -1,0 +1,1 @@
+export const getKeysFromObject = <K> (obj: K): Array<string> => Object.keys(obj);
