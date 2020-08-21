@@ -44,11 +44,13 @@ const Viewer = () => {
   const { editorText } = MarkdownContextState;
   const markedContent = marked(editorText);
   return (
-    <StyledViewerContainer>
-      <StyledViewer
-        dangerouslySetInnerHTML={{ __html: markedContent }}
-      ></StyledViewer>
-    </StyledViewerContainer>
+    <>
+      <StyledViewerContainer>
+        <StyledViewer
+          dangerouslySetInnerHTML={{ __html: markedContent }}
+        ></StyledViewer>
+      </StyledViewerContainer>
+    </>
   );
 };
 
