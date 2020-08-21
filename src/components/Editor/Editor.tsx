@@ -1,5 +1,8 @@
-import React from "react";
+import React, { useContext } from "react";
 import styled from "styled-components";
+
+import { MarkdownContext } from "../../context/MarkdownContext";
+import { MARKDOWN_ACTIONS } from '../../reducers/MarkdownReducer';
 
 const EditorContainer = styled.div`
     flex: 1;
@@ -19,9 +22,17 @@ const StyledEditor = styled.textarea`
 `;
 
 const Editor = () => {
+
+    const {dispatch} = useContext(MarkdownContext); 
+
+    const onEditorChange = (event: any) => {
+        const content = event.target.value.trim();
+        dispatch({type: MARKDOWN_ACTIONS.SET_EDITOR_TEXT, payload: {editorText: content}});
+    }
+
     return (
         <EditorContainer>
-            <StyledEditor />
+            <StyledEditor onChange={(e) => onEditorChange(e)} />
         </EditorContainer>
     )
 }
