@@ -5,7 +5,8 @@ import { MARKDOWN_ACTIONS } from "../../reducers/MarkdownReducer";
  
 import { BoldIcon, ItalicIcon, UnderlineIcon } from "../../styled/Icons";
 
-import { HEADER_TOOLSET_OPTIONS } from "../../shared/app.constant";
+import { SUPPORTED_OPTIONS } from "../../shared/app.constant";
+import { getSelectedIfAny, makeTextBasedOnChoice } from "../../shared/app.utils";
 
 const StyledHeaderContainer = styled.div`
   display: flex;
@@ -25,48 +26,51 @@ const StyledOption = styled.button`
   }
 `;
 
-const Header = () => {
+const Header: React.FC = () => {
 
   const { markdownContextState, dispatch } = useContext(MarkdownContext);
   const {headerTools} = markdownContextState;
 
-  console.log(headerTools);
-
   const onButtonClicked = (type: string) => {
     const payLoad = {[type]: !headerTools[type]};
-    console.log(payLoad);
     dispatch({type: MARKDOWN_ACTIONS.SET_HEADER_ITEMS, payload: payLoad});
+
+    const selectedElement = getSelectedIfAny();
+    if (selectedElement) {
+      const updatedText = makeTextBasedOnChoice(selectedElement, type);
+      dispatch({type: MARKDOWN_ACTIONS.SET_EDITOR_TEXT, payload: { editorText: updatedText }})
+    }
   };
 
   return (
     <StyledHeaderContainer>
       <StyledOption
-        onClick={(e) => onButtonClicked(HEADER_TOOLSET_OPTIONS.BOLD)}
+        onClick={(e) => onButtonClicked(SUPPORTED_OPTIONS.BOLD)}
       >
         <BoldIcon height="25px" />
       </StyledOption>
       <StyledOption
-        onClick={(e) => onButtonClicked(HEADER_TOOLSET_OPTIONS.ITALIC)}
+        onClick={(e) => onButtonClicked(SUPPORTED_OPTIONS.ITALIC)}
       >
         <ItalicIcon height="25px" />
       </StyledOption>
       <StyledOption
-        onClick={(e) => onButtonClicked(HEADER_TOOLSET_OPTIONS.UNDERLINE)}
+        onClick={(e) => onButtonClicked(SUPPORTED_OPTIONS.UNDERLINE)}
       >
         <UnderlineIcon height="25px" />
       </StyledOption>
       <StyledOption
-        onClick={(e) => onButtonClicked(HEADER_TOOLSET_OPTIONS.UNDERLINE)}
+        onClick={(e) => onButtonClicked(SUPPORTED_OPTIONS.UNDERLINE)}
       >
         h1
       </StyledOption>
       <StyledOption
-        onClick={(e) => onButtonClicked(HEADER_TOOLSET_OPTIONS.UNDERLINE)}
+        onClick={(e) => onButtonClicked(SUPPORTED_OPTIONS.UNDERLINE)}
       >
         h2
       </StyledOption>
       <StyledOption
-        onClick={(e) => onButtonClicked(HEADER_TOOLSET_OPTIONS.UNDERLINE)}
+        onClick={(e) => onButtonClicked(SUPPORTED_OPTIONS.UNDERLINE)}
       >
         h3
       </StyledOption>

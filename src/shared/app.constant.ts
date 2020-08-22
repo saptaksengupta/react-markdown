@@ -1,4 +1,4 @@
-export const HEADER_TOOLSET_OPTIONS = {
+export const SUPPORTED_OPTIONS = {
     BOLD: 'BOLD',
     ITALIC: 'ITALIC',
     UNDERLINE: 'UNDERLINE',
