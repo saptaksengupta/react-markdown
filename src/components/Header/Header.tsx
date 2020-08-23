@@ -1,12 +1,18 @@
 import React, { useContext } from "react";
 import styled from "styled-components";
+import styles from "./header.module.scss";
 import { MarkdownContext } from "../../context/MarkdownContext";
 import { MARKDOWN_ACTIONS } from "../../reducers/MarkdownReducer";
- 
+
 import { BoldIcon, ItalicIcon, UnderlineIcon } from "../../styled/Icons";
 
 import { SUPPORTED_OPTIONS } from "../../shared/app.constant";
-import { getSelectedIfAny, makeTextBasedOnChoice } from "../../shared/app.utils";
+import {
+  getSelectedIfAny,
+  makeTextBasedOnChoice,
+  getEditorContent,
+  getEditorTextFormat,
+} from "../../shared/app.utils";
 
 const StyledHeaderContainer = styled.div`
   display: flex;
@@ -27,31 +33,34 @@ const StyledOption = styled.button`
 `;
 
 const Header: React.FC = () => {
-
   const { markdownContextState, dispatch } = useContext(MarkdownContext);
-  const {headerTools} = markdownContextState;
+  const { headerTools } = markdownContextState;
+
+  const editorText: string = markdownContextState.editorText;
 
   const onButtonClicked = (type: string) => {
-    const payLoad = {[type]: !headerTools[type]};
-    dispatch({type: MARKDOWN_ACTIONS.SET_HEADER_ITEMS, payload: payLoad});
-
-    const selectedElement = getSelectedIfAny();
-    if (selectedElement) {
-      const updatedText = makeTextBasedOnChoice(selectedElement, type);
-      dispatch({type: MARKDOWN_ACTIONS.SET_EDITOR_TEXT, payload: { editorText: updatedText }})
+    const payLoad = { [type]: !headerTools[type] };
+    dispatch({ type: MARKDOWN_ACTIONS.SET_HEADER_ITEMS, payload: payLoad });
+    if (makeTextBasedOnChoice(type)) {
+      let currentHtml = getEditorContent();
+      dispatch({
+        type: MARKDOWN_ACTIONS.SET_EDITOR_TEXT,
+        payload: { editorText: currentHtml },
+      });
     }
   };
 
   return (
     <StyledHeaderContainer>
       <StyledOption
+        className={headerTools[SUPPORTED_OPTIONS.BOLD] ? styles.activeBtn : ""}
         onClick={(e) => onButtonClicked(SUPPORTED_OPTIONS.BOLD)}
       >
-        <BoldIcon height="25px" />
+        <BoldIcon
+          height="25px"
+        />
       </StyledOption>
-      <StyledOption
-        onClick={(e) => onButtonClicked(SUPPORTED_OPTIONS.ITALIC)}
-      >
+      <StyledOption onClick={(e) => onButtonClicked(SUPPORTED_OPTIONS.ITALIC)}>
         <ItalicIcon height="25px" />
       </StyledOption>
       <StyledOption
@@ -60,17 +69,17 @@ const Header: React.FC = () => {
         <UnderlineIcon height="25px" />
       </StyledOption>
       <StyledOption
-        onClick={(e) => onButtonClicked(SUPPORTED_OPTIONS.UNDERLINE)}
+        onClick={(e) => onButtonClicked(SUPPORTED_OPTIONS.HEADINGONE)}
       >
         h1
       </StyledOption>
       <StyledOption
-        onClick={(e) => onButtonClicked(SUPPORTED_OPTIONS.UNDERLINE)}
+        onClick={(e) => onButtonClicked(SUPPORTED_OPTIONS.HEADINGTWO)}
       >
         h2
       </StyledOption>
       <StyledOption
-        onClick={(e) => onButtonClicked(SUPPORTED_OPTIONS.UNDERLINE)}
+        onClick={(e) => onButtonClicked(SUPPORTED_OPTIONS.HEADINGTHREE)}
       >
         h3
       </StyledOption>

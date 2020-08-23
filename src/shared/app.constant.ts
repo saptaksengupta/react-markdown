@@ -1,8 +1,8 @@
 export const SUPPORTED_OPTIONS = {
-    BOLD: 'BOLD',
-    ITALIC: 'ITALIC',
-    UNDERLINE: 'UNDERLINE',
-    HEADINGONE: 'HEADINGONE',
-    HEADINGTWO: 'HEADINGTWO',
-    HEADINGTHREE: 'HEADINGTHREE'
+    BOLD: 'bold',
+    ITALIC: 'italic',
+    UNDERLINE: 'underline',
+    HEADINGONE: 'h1',
+    HEADINGTWO: 'h2',
+    HEADINGTHREE: 'h3'
 }

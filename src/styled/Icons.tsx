@@ -1,6 +1,6 @@
 import React from "react";
 
-export const BoldIcon = ({ height, width, fill }: any) => {
+export const BoldIcon = ({ height, width, isActive }: any) => {
   return (
     <svg
       version="1.1"
@@ -11,7 +11,8 @@ export const BoldIcon = ({ height, width, fill }: any) => {
       enableBackground="new 0 0 392.619 392.619"
       height={height}
       width={width}
-      fill={fill}
+      fill={isActive ? 'white' : 'black'}
+      style={{background: isActive ? 'blue' : 'none'}}
     >
       <g>
         <path
@@ -46,7 +47,7 @@ export const BoldIcon = ({ height, width, fill }: any) => {
   );
 };
 
-export const ItalicIcon = ({ height, width, fill }: any) => {
+export const ItalicIcon = ({ height, width, isActive }: any) => {
   return (
     <svg
       version="1.1"
@@ -56,8 +57,8 @@ export const ItalicIcon = ({ height, width, fill }: any) => {
       viewBox="0 0 392.619 392.619"
       enableBackground="new 0 0 392.619 392.619"
       height={height}
-      width={width}
-      fill={fill}
+      fill={isActive ? 'white' : 'black'}
+      style={{background: isActive ? 'blue' : 'none'}}
     >
       <g>
         <path
@@ -91,7 +92,7 @@ export const ItalicIcon = ({ height, width, fill }: any) => {
   );
 };
 
-export const UnderlineIcon = ({ height, width, fill }: any) => {
+export const UnderlineIcon = ({ height, width, isActive }: any) => {
   return (
     <svg
       version="1.1"
@@ -101,8 +102,8 @@ export const UnderlineIcon = ({ height, width, fill }: any) => {
       viewBox="0 0 392.621 392.621"
       enableBackground="new 0 0 392.621 392.621"
       height={height}
-      width={width}
-      fill={fill}
+      fill={isActive ? 'white' : 'black'}
+      style={{background: isActive ? 'blue' : 'none'}}
     >
       <g>
         <path
