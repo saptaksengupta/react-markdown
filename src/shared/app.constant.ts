@@ -4,5 +4,8 @@ export const SUPPORTED_OPTIONS = {
     UNDERLINE: 'underline',
     HEADINGONE: 'h1',
     HEADINGTWO: 'h2',
-    HEADINGTHREE: 'h3'
+    HEADINGTHREE: 'h3',
+    BLOCKQUOTE: 'blockquote',
+    UPPERCASE: 'uppercase',
+    LOWERCASE: 'lowercase'
 }

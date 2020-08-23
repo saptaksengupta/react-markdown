@@ -52,25 +52,48 @@ const Header: React.FC = () => {
       <StyledOption onClick={(e) => onButtonClicked(SUPPORTED_OPTIONS.ITALIC)}>
         <ItalicIcon height="25px" />
       </StyledOption>
-      {/* <StyledOption
+      <StyledOption
         onClick={(e) => onButtonClicked(SUPPORTED_OPTIONS.UNDERLINE)}
       >
         <UnderlineIcon height="25px" />
-      </StyledOption> */}
+      </StyledOption>
       <StyledOption
+        className={styles.textBtn}
         onClick={(e) => onButtonClicked(SUPPORTED_OPTIONS.HEADINGONE)}
       >
         h1
       </StyledOption>
       <StyledOption
+        className={styles.textBtn}
         onClick={(e) => onButtonClicked(SUPPORTED_OPTIONS.HEADINGTWO)}
       >
         h2
       </StyledOption>
       <StyledOption
+        className={styles.textBtn}
         onClick={(e) => onButtonClicked(SUPPORTED_OPTIONS.HEADINGTHREE)}
       >
         h3
+      </StyledOption>
+
+      <StyledOption
+        className={styles.textBtn}
+        onClick={(e) => onButtonClicked(SUPPORTED_OPTIONS.BLOCKQUOTE)}
+      >
+        Block Quote
+      </StyledOption>
+
+      <StyledOption
+        className={styles.textBtn}
+        onClick={(e) => onButtonClicked(SUPPORTED_OPTIONS.UPPERCASE)}
+      >
+        UpperCase
+      </StyledOption>
+      <StyledOption
+        className={styles.textBtn}
+        onClick={(e) => onButtonClicked(SUPPORTED_OPTIONS.LOWERCASE)}
+      >
+        Lowercase
       </StyledOption>
     </StyledHeaderContainer>
   );
