@@ -7,5 +7,6 @@ export const SUPPORTED_OPTIONS = {
     HEADINGTHREE: 'h3',
     BLOCKQUOTE: 'blockquote',
     UPPERCASE: 'uppercase',
-    LOWERCASE: 'lowercase'
+    LOWERCASE: 'lowercase',
+    CODE: 'code'
 }

@@ -95,6 +95,12 @@ const Header: React.FC = () => {
       >
         Lowercase
       </StyledOption>
+      <StyledOption
+        className={styles.textBtn}
+        onClick={(e) => onButtonClicked(SUPPORTED_OPTIONS.CODE)}
+      >
+        Code
+      </StyledOption>
     </StyledHeaderContainer>
   );
 };

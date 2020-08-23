@@ -49,6 +49,9 @@ export const parseTextBasedOnChoice = (choice: any) => {
       case SUPPORTED_OPTIONS.LOWERCASE:
         range.insertNode(makeItlowercase(String(selectedRangeTxt)));
         break;
+      case SUPPORTED_OPTIONS.CODE:
+        range.insertNode(makeItCode(selectedRangeTxt));
+        break;
       default:
         break;
     }
@@ -82,3 +85,6 @@ const makeItUppercase = <T>(text: string): Text =>
 
 const makeItlowercase = <T>(text: string): Text =>
   document.createTextNode(`${text ? text.toLowerCase() : "lowercase text"}`);
+
+const makeItCode = <T>(text: T): Text =>
+  document.createTextNode(`${text ? "`" + text + " `" : "`Your code here `"}`);
