@@ -1,3 +1,19 @@
+## To get Started
+
+- Clone the Repo by the command
+```bash 
+    git clone https://github.com/saptaksengupta/react-markdown.io.git
+```
+
+- Please do install all the dependencies by simply runing
+```bash 
+    yarn 
+    
+    or
+
+    npm install 
+```
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
