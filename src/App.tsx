@@ -11,6 +11,9 @@ import Header from "./components/Header";
 const StyledContainer = styled.div`
   display: flex;
   min-height: 100%;
+  position: relative;
+  top: 65.33px;
+  left: 15px;
 `;
 
 function App() {

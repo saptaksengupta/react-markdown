@@ -16,6 +16,11 @@ const StyledHeaderContainer = styled.div`
   align-items: center;
   background: whitesmoke;
   padding: 1em;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1;
 `;
 
 const StyledOption = styled.button`

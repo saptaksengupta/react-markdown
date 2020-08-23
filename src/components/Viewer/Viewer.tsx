@@ -10,6 +10,7 @@ const StyledViewerContainer = styled.pre`
   flex-direction: column;
   padding: 1em;
   justify-content: flex-start;
+  margin: 0;
 `;
 
 const StyledViewer = styled.pre`
