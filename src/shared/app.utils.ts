@@ -1,62 +1,60 @@
 import { SUPPORTED_OPTIONS } from "../shared/app.constant";
-import Lazy from "lazy.js";
 
 export const getEditorContent = () => {
-  // return document.getElementById('editor-window')?.innerText;
   if (document.getElementById("editor-window")) {
-    return processHtml(document.getElementById("editor-window")?.innerHTML);
+    return document.getElementById("editor-window")?.innerText;
   }
 };
 
-const processHtml = (htmlStr: any) => {
-  console.log(htmlStr.replace(/<\/?b>/g, "**"));
-  return htmlStr.replace(/<\/?b>/g, "**");
-};
+const getSlectionRange = (selection: Selection) => selection.getRangeAt(0); 
 
-export const getEditorTextFormat = () => {
-  return document
-    .getElementById("editor-window")
-    ?.innerHTML.replace(/(<([^>]+)>)/gi, "");
-};
+const deleteRangeContents = (selectionRange: Range) => selectionRange.deleteContents();
 
 export const getKeysFromObject = <K>(obj: K): Array<string> => Object.keys(obj);
 
-export const getSelectedIfAny = () =>
-  window.getSelection() ? window.getSelection()?.toString() : "";
+export const getSelectedIfAny = () => window.getSelection();
 
-export const makeTextBasedOnChoice = <T>(choice: String): boolean => {
-  switch (choice) {
-    case SUPPORTED_OPTIONS.BOLD:
-      return makeItBold();
-    case SUPPORTED_OPTIONS.ITALIC:
-      return makeItItalic();
-    case SUPPORTED_OPTIONS.UNDERLINE:
-      return makeItUnderLine();
-    case SUPPORTED_OPTIONS.HEADINGONE:
-      return makeItHeaderOne();
-    case SUPPORTED_OPTIONS.HEADINGTWO:
-      return makeItHeaderTwo();
-    case SUPPORTED_OPTIONS.HEADINGTHREE:
-      return makeItHeaderThree();
-    default:
-      return false;
+export const parseTextBasedOnChoice = (choice: any) => {
+  const selectionRange = getSelectedIfAny();
+  const selectedRangeTxt = selectionRange?.toString();
+  if (selectionRange?.rangeCount) {
+    const range = getSlectionRange(selectionRange);
+    deleteRangeContents(range);
+    switch (choice) {
+      case SUPPORTED_OPTIONS.BOLD:
+        range.insertNode(makeItBold(selectedRangeTxt));
+        break;
+      case SUPPORTED_OPTIONS.ITALIC:
+        range.insertNode(makeItItalic(selectedRangeTxt));
+        break;
+      // case SUPPORTED_OPTIONS.UNDERLINE:
+      //   range.insertNode(makeItBold(selectedRangeTxt));
+      //   break;
+      case SUPPORTED_OPTIONS.HEADINGONE:
+        range.insertNode(makeItHeaderOne(selectedRangeTxt));
+        break;
+      case SUPPORTED_OPTIONS.HEADINGTWO:
+        range.insertNode(makeItHeaderTwo(selectedRangeTxt));
+        break;
+      case SUPPORTED_OPTIONS.HEADINGTHREE:
+        range.insertNode(makeItHeaderThree(selectedRangeTxt));
+        break;
+      default:
+        break;
+    }
   }
-};
+  return getEditorContent();
+}
 
-const makeItBold = <T>(): boolean =>
-  document.execCommand(SUPPORTED_OPTIONS.BOLD);
+const makeItBold = <T> (text: T): Text => document.createTextNode(`**${text}**`);
 
-const makeItItalic = <T>(): boolean =>
-  document.execCommand(SUPPORTED_OPTIONS.ITALIC);
+const makeItItalic = <T>(text: T): Text => document.createTextNode(`*${text}*`);
+ 
 
-const makeItUnderLine = <T>(): boolean =>
-  document.execCommand(SUPPORTED_OPTIONS.UNDERLINE);
+// const makeItUnderLine = <T>(text: T): Text => document.createTextNode(`*${text}*`);
 
-const makeItHeaderOne = <T>(): boolean =>
-  document.execCommand('formatBlock', false, SUPPORTED_OPTIONS.HEADINGONE);
+const makeItHeaderOne = <T>(text: T): Text => document.createTextNode(`# ${text}`);
 
-const makeItHeaderTwo = <T>(): boolean =>
-  document.execCommand('formatBlock', false, SUPPORTED_OPTIONS.HEADINGTWO);
+const makeItHeaderTwo = <T>(text: T): Text => document.createTextNode(`## ${text}`);
 
-const makeItHeaderThree = <T>(): boolean =>
-  document.execCommand('formatBlock', false, SUPPORTED_OPTIONS.HEADINGTHREE);
+const makeItHeaderThree = <T>(text: T): Text => document.createTextNode(`### ${text}`);
