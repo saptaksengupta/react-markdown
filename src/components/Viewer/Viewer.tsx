@@ -11,6 +11,7 @@ const StyledViewerContainer = styled.pre`
   padding: 1em;
   justify-content: flex-start;
   margin: 0;
+  background: #f3f3f3;
 `;
 
 const StyledViewer = styled.pre`

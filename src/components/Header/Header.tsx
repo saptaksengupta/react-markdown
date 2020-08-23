@@ -14,7 +14,7 @@ const StyledHeaderContainer = styled.div`
   flex-direction: row;
   justify-content: flex-start;
   align-items: center;
-  background: whitesmoke;
+  background: #2c3e50;
   padding: 1em;
   position: fixed;
   top: 0;

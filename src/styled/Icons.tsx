@@ -11,7 +11,7 @@ export const BoldIcon = ({ height, width, isActive }: any) => {
       enableBackground="new 0 0 392.619 392.619"
       height={height}
       width={width}
-      fill={isActive ? 'white' : 'black'}
+      fill={isActive ? 'white' : 'whitesmoke'}
       style={{background: isActive ? 'blue' : 'none'}}
     >
       <g>
@@ -57,7 +57,7 @@ export const ItalicIcon = ({ height, width, isActive }: any) => {
       viewBox="0 0 392.619 392.619"
       enableBackground="new 0 0 392.619 392.619"
       height={height}
-      fill={isActive ? 'white' : 'black'}
+      fill={isActive ? 'white' : 'whitesmoke'}
       style={{background: isActive ? 'blue' : 'none'}}
     >
       <g>
@@ -102,7 +102,7 @@ export const UnderlineIcon = ({ height, width, isActive }: any) => {
       viewBox="0 0 392.621 392.621"
       enableBackground="new 0 0 392.621 392.621"
       height={height}
-      fill={isActive ? 'white' : 'black'}
+      fill={isActive ? 'white' : 'whitesmoke'}
       style={{background: isActive ? 'blue' : 'none'}}
     >
       <g>
