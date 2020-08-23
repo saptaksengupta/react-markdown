@@ -52,15 +52,15 @@ const Header: React.FC = () => {
         className={headerTools[SUPPORTED_OPTIONS.BOLD] ? styles.activeBtn : ""}
         onClick={(e) => onButtonClicked(SUPPORTED_OPTIONS.BOLD)}
       >
-        <BoldIcon height="25px" />
+        <BoldIcon height="30px" />
       </StyledOption>
       <StyledOption onClick={(e) => onButtonClicked(SUPPORTED_OPTIONS.ITALIC)}>
-        <ItalicIcon height="25px" />
+        <ItalicIcon height="30px" />
       </StyledOption>
       <StyledOption
         onClick={(e) => onButtonClicked(SUPPORTED_OPTIONS.UNDERLINE)}
       >
-        <UnderlineIcon height="25px" />
+        <UnderlineIcon height="30px" />
       </StyledOption>
       <StyledOption
         className={styles.textBtn}
