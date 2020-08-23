@@ -7,12 +7,7 @@ import { MARKDOWN_ACTIONS } from "../../reducers/MarkdownReducer";
 import { BoldIcon, ItalicIcon, UnderlineIcon } from "../../styled/Icons";
 
 import { SUPPORTED_OPTIONS } from "../../shared/app.constant";
-import {
-  getSelectedIfAny,
-  makeTextBasedOnChoice,
-  getEditorContent,
-  getEditorTextFormat,
-} from "../../shared/app.utils";
+import { parseTextBasedOnChoice } from "../../shared/app.utils";
 
 const StyledHeaderContainer = styled.div`
   display: flex;
@@ -36,18 +31,14 @@ const Header: React.FC = () => {
   const { markdownContextState, dispatch } = useContext(MarkdownContext);
   const { headerTools } = markdownContextState;
 
-  const editorText: string = markdownContextState.editorText;
-
   const onButtonClicked = (type: string) => {
     const payLoad = { [type]: !headerTools[type] };
     dispatch({ type: MARKDOWN_ACTIONS.SET_HEADER_ITEMS, payload: payLoad });
-    if (makeTextBasedOnChoice(type)) {
-      let currentHtml = getEditorContent();
-      dispatch({
-        type: MARKDOWN_ACTIONS.SET_EDITOR_TEXT,
-        payload: { editorText: currentHtml },
-      });
-    }
+    const updatedText = parseTextBasedOnChoice(type);
+    dispatch({
+      type: MARKDOWN_ACTIONS.SET_EDITOR_TEXT,
+      payload: { editorText: updatedText },
+    });
   };
 
   return (
@@ -56,18 +47,16 @@ const Header: React.FC = () => {
         className={headerTools[SUPPORTED_OPTIONS.BOLD] ? styles.activeBtn : ""}
         onClick={(e) => onButtonClicked(SUPPORTED_OPTIONS.BOLD)}
       >
-        <BoldIcon
-          height="25px"
-        />
+        <BoldIcon height="25px" />
       </StyledOption>
       <StyledOption onClick={(e) => onButtonClicked(SUPPORTED_OPTIONS.ITALIC)}>
         <ItalicIcon height="25px" />
       </StyledOption>
-      <StyledOption
+      {/* <StyledOption
         onClick={(e) => onButtonClicked(SUPPORTED_OPTIONS.UNDERLINE)}
       >
         <UnderlineIcon height="25px" />
-      </StyledOption>
+      </StyledOption> */}
       <StyledOption
         onClick={(e) => onButtonClicked(SUPPORTED_OPTIONS.HEADINGONE)}
       >
