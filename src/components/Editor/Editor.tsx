@@ -1,9 +1,10 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import styled from "styled-components";
 
 import { MarkdownContext } from "../../context/MarkdownContext";
 import { MARKDOWN_ACTIONS } from "../../reducers/MarkdownReducer";
 import { getEditorContent } from "../../shared/app.utils";
+import { EDITOR_INTRO } from "../../shared/app.constant";
 const EditorContainer = styled.div`
   flex: 1;
   padding: 1em;
@@ -24,7 +25,14 @@ const StyledEditor = styled.div`
 
 const Editor: React.FC = () => {
   const { dispatch } = useContext(MarkdownContext);
-  
+
+  useEffect(() => {
+    // For demo only.
+    setTimeout(() => {
+      onEditorChange(null);
+    }, 100)
+  }, []);
+
   const onEditorChange = (event: any) => {
     parseAndSetContent(event);
   };
@@ -39,7 +47,7 @@ const Editor: React.FC = () => {
 
   return (
     <EditorContainer>
-      <StyledEditor id="editor-window" contentEditable="true" onInput={(e) => onEditorChange(e)} />
+      <StyledEditor id="editor-window" dangerouslySetInnerHTML={{__html: EDITOR_INTRO}} contentEditable="true" onInput={(e) => onEditorChange(e)} />
     </EditorContainer>
   );
 };
