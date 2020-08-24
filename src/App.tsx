@@ -13,7 +13,6 @@ const StyledContainer = styled.div`
   min-height: 100%;
   position: relative;
   top: 65.33px;
-  left: 15px;
 `;
 
 function App() {
